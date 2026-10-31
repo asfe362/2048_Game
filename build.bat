@@ -16,7 +16,7 @@ set "PATH=%DEVCDIR%;%PATH%"
 cd /d "%~dp0"
 
 g++ -std=c++14 -Wall -Wextra -O2 -mwindows -o 2048.exe ^
-    main.cpp window.cpp game.cpp render.cpp input.cpp
+    main.cpp window.cpp game.cpp render.cpp input.cpp theme.cpp
 if errorlevel 1 (
     echo [ERROR] Build failed.
     exit /b 1

@@ -20,6 +20,8 @@ Action action_from_key(WPARAM key) {
             return Action::MoveRight;
         case 'R':
             return Action::Restart;
+        case 'T':
+            return Action::ToggleTheme;
         case VK_RETURN:
         case VK_SPACE:
             return Action::Primary;

@@ -17,6 +17,7 @@ enum class Action {
     Restart,   // 重新开始
     Primary,   // 遮罩上的主按钮（继续游戏 / 再来一局）
     Secondary, // 遮罩上的次按钮（重新开始）
+    ToggleTheme, // 切换浅色 / 深色主题
     Quit       // 关闭窗口
 };
 

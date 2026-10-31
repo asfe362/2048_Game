@@ -7,8 +7,18 @@
 
 #include "config.h"
 #include "game.h"
+#include "theme.h"
 
 namespace render {
+
+// 当前鼠标悬停的可点击控件，用于按钮高亮反馈
+enum class HoverTarget {
+    None,
+    NewGame,
+    Theme,
+    OverlayPrimary,
+    OverlaySecondary
+};
 
 // 界面布局：窗口尺寸变化后由 compute_layout 重新计算，
 // 绘制模块与输入模块共用同一份布局，保证点击热区与画面一致。
@@ -19,6 +29,7 @@ struct Layout {
     RECT timerRect = {0, 0, 0, 0};          // 本局用时
     RECT bestRect = {0, 0, 0, 0};           // 最高分（窗口较窄时隐藏）
     RECT newGameRect = {0, 0, 0, 0};        // “新游戏”按钮
+    RECT themeRect = {0, 0, 0, 0};          // 主题切换按钮
     RECT gridRect = {0, 0, 0, 0};           // 网格背景
     RECT hintRect = {0, 0, 0, 0};           // 底部操作提示
     RECT overlayPanel = {0, 0, 0, 0};       // 胜利/失败提示面板
@@ -46,7 +57,8 @@ public:
     Renderer& operator=(const Renderer&) = delete;
 
     void paint(HWND hwnd, const game::Board& board, const Layout& layout,
-               bool showWinOverlay, bool showLoseOverlay);
+               const theme::Theme& theme, bool showWinOverlay, bool showLoseOverlay,
+               HoverTarget hover);
 
 private:
     void ensure_buffer(HDC dc, int width, int height);
